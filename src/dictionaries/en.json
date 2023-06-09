@@ -1,0 +1,18 @@
+{
+    "server-component": {
+        "welcome": "Welcome"
+    },
+    "counter": {
+        "increment": "Increment",
+        "decrement": "Decrement"
+    },
+    "header": {
+        "welcome": "welcome",
+        "guest": "Guest",
+        "deliverTo": "Deliver To",
+        "defaultLocation": "Qatif",
+        "usedLanguage": "Language",
+        "currentLanguage": "EN",
+        "searchPlaceholder": "Search your favourite fish, shrimp, sea foods"
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "server-component": {
+        "welcome": "لما كان الاعتراف بالحق فضيلةأضف"
+    },
+    "counter": {
+        "increment": "أضف",
+        "decrement": "إنقاص"
+    },
+    "header": {
+        "welcome": "أهلاً",
+        "guest": "بضيفنا",
+        "deliverTo": "التوصيل لي",
+        "defaultLocation": "القطيف",
+        "usedLanguage": "اللغة",
+        "currentLanguage": "العربية",
+        "searchPlaceholder": "البحث عن أسماك مثل: كنعد أو صافي"
+    }
+}
