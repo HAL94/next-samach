@@ -5,39 +5,45 @@ import LogoEn from '../../../../../public/logo_5.png';
 import LogoNoText from '../../../../../public/logo_no_text.png';
 import Link from 'next/link';
 import { BsBackspace, BsBackspaceReverse, BsCart2, BsChevronDown } from 'react-icons/bs';
-import { MdOutlineAccountCircle } from 'react-icons/md';
+import { MdLanguage, MdOutlineAccountCircle } from 'react-icons/md';
 
 import { BiMenuAltLeft, BiMenuAltRight } from 'react-icons/bi';
 import { AiOutlineSearch } from 'react-icons/ai'
 import { IoLocationOutline } from 'react-icons/io5';
 
 import useGetLocaleDir from '@/app/hooks/use-get-locale';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import SideMenuDrawer from './SideMenu';
 import { GrLanguage } from 'react-icons/gr';
 
 import { i18n } from '@/i18n-config';
 import useLocaleSwitcher from '@/app/hooks/use-locale-switcher';
+import AppLoadingOverlay from '../AppLoadingOverlay';
+import useOnRouteChangeLoader from '@/app/hooks/use-on-route-change-loader';
+
+
 const LANGS = {
     'en': 'English',
     'ar': 'العربية'
 }
-import { useBreakpointValue } from '@chakra-ui/react'
 
 
 export default function Header({
-    dictionary
+    dictionary,
+    slides
 }: {
-    dictionary: any
+    dictionary: any,
+    slides: any
 }) {
     const [isSearch, setIsSearch] = useState(false)
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [lessThan600] = useMediaQuery('(max-width: 600px)');
     const isRTL = useGetLocaleDir();
-    const { redirectedPathName } = useLocaleSwitcher();
+    const { langLoading, redirectedPathName } = useLocaleSwitcher();
 
     return (
-        <Container maxW='container.xs' bg='white' boxShadow={'rgba(0, 0, 0, 0.12) 0px 3px 8px;'} role='header' sx={{ py: 3, px: { base: 22, lg: 24, xl: 32 } }}>
+        <Container maxW='container.xs' bg='white' sx={{ py: 3, px: { base: 22, lg: 24, xl: 32 }, my: 3 }} boxShadow={'rgba(0, 0, 0, 0.12) 0px 3px 8px;'} role='header'>
+            {langLoading && <AppLoadingOverlay />}
             <Box role='menu' gap={6} display='flex' width='full' flexDirection={'row'} justifyContent={'space-between'} alignItems={'center'} height={50}>
                 <Box role='Logo Desktop'
                     sx={{
@@ -72,6 +78,7 @@ export default function Header({
                     <Box width='100%'>
                         <InputGroup>
                             <Input type='text' placeholder={dictionary.header.searchPlaceholder} />
+                            {/* eslint react/no-children-prop: off */}
                             <InputRightAddon as={IconButton} colorScheme='secondary' bg='secondary' color='#fff' children={<AiOutlineSearch size={25} />} />
                         </InputGroup>
                     </Box>
@@ -81,10 +88,10 @@ export default function Header({
                     <Stack direction={'row'} spacing={6}>
                         <Box aria-label='Language Box' position='relative' gap={2} display='flex'>
                             <Menu>
-                                <MenuButton colorScheme='secondary' as={Button} rightIcon={<BsChevronDown size={18} />} leftIcon={<GrLanguage size={18} />}>
+                                <MenuButton colorScheme='secondary' as={Button} rightIcon={<BsChevronDown size={18} />} leftIcon={<MdLanguage size={18} color='#fff' />}>
                                     <Heading size='sm'>{dictionary.header.usedLanguage}</Heading>
                                 </MenuButton>
-                                <MenuList>
+                                <MenuList zIndex={10}>
                                     {
                                         i18n.locales.map((locale, index) => <MenuItem onClick={() => redirectedPathName(locale)} key={`locale_${index}`}>
                                             {LANGS[locale]}
@@ -121,6 +128,6 @@ export default function Header({
                     } />
                 </Box>
             </Box>
-        </Container>
+        </Container >
     )
 }

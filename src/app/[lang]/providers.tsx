@@ -22,6 +22,7 @@ export function Providers({
     return (
         <CacheProvider>
             <ChakraProvider theme={theme}>
+                {/* eslint react/no-children-prop: off */}
                 <EmotionCacheProvider value={cache} children={children} />
             </ChakraProvider>
         </CacheProvider>
