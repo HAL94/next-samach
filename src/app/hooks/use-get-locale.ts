@@ -1,13 +1,14 @@
-import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 export default function useGetLocaleDir() {
-    const [isRTL, setIsRTL] = useState<boolean>(false);
-    const pathname = usePathname()
+  const [isRTL, setIsRTL] = useState<boolean>(false);
+  const params = useParams();
+  const lang = params?.lang;
 
-    useEffect(() => {
-        setIsRTL(pathname.includes('ar'))
-    }, [pathname, setIsRTL])
-    
-    return isRTL;
+  useEffect(() => {
+    setIsRTL(lang === 'ar');
+  }, [lang]);
+
+  return isRTL;
 }

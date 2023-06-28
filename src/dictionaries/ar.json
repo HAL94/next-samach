@@ -13,6 +13,14 @@
         "defaultLocation": "القطيف",
         "usedLanguage": "اللغة",
         "currentLanguage": "العربية",
-        "searchPlaceholder": "البحث عن أسماك مثل: كنعد أو صافي"
+        "searchPlaceholder": "البحث عن أسماك مثل: كنعد أو صافي",
+        "privacyPolicy": "سياسة الخصوصية",
+        "returnPolicy": "سياسة الإسترجاع",
+        "orderDeliveryPolicy": "سياسة الطلب والتوصيل"
+    },
+    "categories": {
+        "fish": "الأسماك",
+        "shrimp": "الربيان",
+        "crustaceans": "القشريات"
     }
 }

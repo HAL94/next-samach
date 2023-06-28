@@ -1,29 +1,27 @@
+import { getAllBanners } from '../actions/get-all-banners';
+import Banners from './components/Banners';
+import Categories from './components/Categories';
+import PageHoc from './hoc/page-hoc';
 
-import { getDictionary } from '@/get-dictionary'
-import { Locale } from '@/i18n-config'
-import Counter from './components/Counter'
-import LocaleSwitcher from './components/LocaleSwitcher'
-import { supabase } from '@/supabase-client'
-import Banners from './components/Banners'
+interface Props {
+  slides: any;
+  lang: 'en' | 'ar';
+  dictionary: any;
+}
 
-
-export default async function Home({
-  params: { lang }
-}: {
-  params: { lang: Locale }
-}) {
-  const dictionary = await getDictionary(lang)
-  const slides = await supabase.from('banner-slides').select('*')
+const Home = ({ slides, lang, dictionary }: Props) => {
   return (
     <main>
-      <Banners bannerData={slides} />
-      <p>Current locale: {lang}</p>
-      <LocaleSwitcher />
-      <p>
-        This text is rendered on the server:{' '}
-        {dictionary['server-component'].welcome}
-      </p>
-      <Counter dictionary={dictionary.counter} />
+      <Banners lang={lang} bannerData={slides} />
+      {/* <Counter dictionary={dictionary.counter} /> */}
+      <Categories dictionary={dictionary.categories} />
     </main>
-  )
-}
+  );
+};
+
+export default PageHoc(Home, [
+  {
+    key: 'slides',
+    callback: async () => await getAllBanners(),
+  },
+]);

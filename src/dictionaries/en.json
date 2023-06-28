@@ -13,6 +13,14 @@
         "defaultLocation": "Qatif",
         "usedLanguage": "Language",
         "currentLanguage": "EN",
-        "searchPlaceholder": "Search your favourite fish, shrimp, sea foods"
+        "searchPlaceholder": "Search your favourite fish, shrimp, sea foods",
+        "privacyPolicy": "Privacy Policy",
+        "returnPolicy": "Return Policy",
+        "orderDeliveryPolicy": "Order Delivery Policy"
+    },
+    "categories": {
+        "fish": "Fish",
+        "shrimp": "Shrimp",
+        "crustaceans": "Crustaceans"
     }
 }

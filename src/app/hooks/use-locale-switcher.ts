@@ -1,26 +1,18 @@
-import { usePathname, useRouter } from "next/navigation"
+import { useParams, usePathname, useRouter } from "next/navigation"
 import { Router } from "next/router"
-import { useEffect, useState } from "react"
-// import useOnRouteChangeLoader from "./use-on-route-change-loader"
+import { useState } from "react"
+
 
 
 export default function useLocaleSwitcher() {
     const pathname = usePathname()
-    const router = useRouter()
-    // const { langLoading } = useOnRouteChangeLoader()
-    const [langLoading, setLangLoading] = useState(false)
-    // useEffect(() => {
-    //     Router.events.on('routeChangeStart', () => {
-    //         setLangLoading(true)
-    //     })
-
-    //     Router.events.off('routeChangeComplete', () => {
-    //         setLangLoading(false)
-    //     })
-    // }, [])
+    const params = useParams()
+    const router = useRouter()    
+    const [langLoading, setLangLoading] = useState(false)    
 
     const redirectedPathName = async (locale: string) => {
-        if (!pathname) return '/'
+        if (!pathname || !params?.lang) return '/'
+        if (params?.lang === locale) return
         setLangLoading(true)
         // Router.events.on('routeChangeStart', () => {
         // })
@@ -40,8 +32,8 @@ export default function useLocaleSwitcher() {
                 locale
             })
         })
-        const result = await response.json();
-        console.log('result', result);
+        await response.json();
+        // console.log('result', result);
         // return segments.join('/')
         router.push(segments.join('/'));
         router.refresh();

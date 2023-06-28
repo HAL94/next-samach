@@ -1,0 +1,17 @@
+@media only screen and (min-width: 1024px) {
+  .cat-blob {
+    transition: all ease-in 0.2s;
+  }
+  .cat-blob:hover {
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 3px 8px !important;
+  }
+  .cat-blob img,
+  .cat-blob svg {
+    transition: all ease-in 0.2s;
+  }
+
+  .cat-blob:hover img,
+  .cat-blob:hover svg {
+    transform: scale(1.2);
+  }
+}
