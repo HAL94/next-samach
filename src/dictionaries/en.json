@@ -22,5 +22,9 @@
         "fish": "Fish",
         "shrimp": "Shrimp",
         "crustaceans": "Crustaceans"
+    },
+    "sar": "SAR",
+    "product": {
+        "add": "Add"
     }
 }

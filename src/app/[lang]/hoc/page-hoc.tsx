@@ -16,7 +16,7 @@ export default function PageHoc(
   if (!Component) {
     throw new Error('Could not instantiate page');
   }
-  /* eslint react/display-name: off */
+  
   return async ({
     params: { lang },
   }: {
@@ -30,7 +30,6 @@ export default function PageHoc(
     };
 
     if (extraCbs && extraCbs.length) {
-    //   console.log('called');
       for (let i = 0; i < extraCbs.length; i++) {
         const extraProps = await extraCbs[i].callback();
         props[extraCbs[i].key] = extraProps;

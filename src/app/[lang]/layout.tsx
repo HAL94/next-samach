@@ -4,7 +4,7 @@ import { Providers } from './providers';
 import Header from './components/Header';
 import { getLocaleCookie } from '../actions/get-locale-cookie';
 import { getDictionary } from '@/get-dictionary';
-
+import { supabase } from '@/supabase-client';
 
 const cairo = Cairo({ subsets: ['latin'] });
 
@@ -20,10 +20,13 @@ export default async function RootLayout({
 }) {
   const locale = await getLocaleCookie();
   const isRTL = locale === 'ar';
-  const dictionary = await getDictionary(isRTL ? 'ar' : 'en');  
+  const dictionary = await getDictionary(isRTL ? 'ar' : 'en');
   return (
     <html className={cairo.className}>
-      <body dir={isRTL ? 'rtl' : 'ltr'} style={{ paddingBottom: 20 }}>
+      <body
+        dir={isRTL ? 'rtl' : 'ltr'}
+        style={{ paddingBottom: 20, overflowX: 'hidden' }}
+      >
         <Providers locale={locale ? locale : 'ar'}>
           <Header dictionary={dictionary} />
           {children}
