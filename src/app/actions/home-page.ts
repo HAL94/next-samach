@@ -16,4 +16,11 @@ export async function getBestSellers() {
   return result;
 }
 
+export async function getOffers() {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_HOST}/api/get-offers`,
+  )
+  return await response.json();
+}
+
 

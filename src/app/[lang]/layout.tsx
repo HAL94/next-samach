@@ -4,7 +4,9 @@ import { Providers } from './providers';
 import Header from './components/Header';
 import { getLocaleCookie } from '../actions/get-locale-cookie';
 import { getDictionary } from '@/get-dictionary';
-import { supabase } from '@/supabase-client';
+import DictProvider from './providers/dictionary';
+import ClientOnly from './components/ClientOnly';
+
 
 const cairo = Cairo({ subsets: ['latin'] });
 
@@ -28,8 +30,14 @@ export default async function RootLayout({
         style={{ paddingBottom: 20, overflowX: 'hidden' }}
       >
         <Providers locale={locale ? locale : 'ar'}>
-          <Header dictionary={dictionary} />
-          {children}
+          <ClientOnly>
+            <DictProvider dictionary={dictionary}>
+              <Header />
+              <main style={{ paddingInline: 60 }}>
+                {children}
+              </main>
+            </DictProvider>
+          </ClientOnly>
         </Providers>
       </body>
     </html>

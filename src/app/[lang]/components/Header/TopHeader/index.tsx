@@ -19,17 +19,16 @@ import { BsTelephone } from 'react-icons/bs';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { theme } from '@/theme';
+import { useDictContext } from '@/app/[lang]/providers/dictionary';
 const LANGS = {
   en: 'English',
   ar: 'العربية',
 };
 
-interface Props {
-  dictionary: any;
-}
 
-export default function TopHeader({ dictionary }: Props) {
+export default function TopHeader() {
   const { langLoading, redirectedPathName } = useLocaleSwitcher();
+  const { dictionary } = useDictContext();
   const params = useParams();
   return (
     <Container

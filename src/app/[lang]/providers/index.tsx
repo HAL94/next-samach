@@ -12,10 +12,10 @@ const options = {
 }
 export function Providers({
     children,
-    locale
+    locale,
 }: {
     children: React.ReactNode,
-    locale: string
+    locale: string;
 }) {
     const dir = locale === 'ar' ? 'rtl' : 'ltr';
     const cache = createCache(options[dir as ('ltr' | 'rtl')]);

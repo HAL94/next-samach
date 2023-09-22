@@ -12,7 +12,11 @@ interface Props {
 
 export default function ProductCard({ item, isRTL, dictionary }: Props) {
   return (
-    <Card width="100%" height="100%" position="relative" overflow="hidden">
+    <Card width="100%" height="100%" position="relative" _hover={{
+      border: 1,
+      borderColor: theme.colors.tertiary['500'],
+      borderStyle: 'solid'
+    }}>
       <CardBody>
         <Box
           display="flex"
@@ -30,6 +34,15 @@ export default function ProductCard({ item, isRTL, dictionary }: Props) {
             <Heading size="sm" color={theme.colors.ferra[500]}>
               {isRTL ? item.title_ar : item.title_en}
             </Heading>
+
+            {item.is_discounted && <Text
+              size="md"
+              color={theme.colors.neptune[500]}
+              textDecorationLine={'line-through'}
+              alignSelf="start"
+            >
+              {item.price} {dictionary.sar}
+            </Text>}
             <Text
               size="md"
               color={theme.colors.secondary[500]}
@@ -37,7 +50,7 @@ export default function ProductCard({ item, isRTL, dictionary }: Props) {
             >
               {item.selling_price} {dictionary.sar}
             </Text>
-            <Button variant="outline" type="button" mt={8}>
+            <Button variant="outline" type="button" mt={8} alignSelf={'flex-start'}>
               {dictionary.product.add}
             </Button>
           </Box>
